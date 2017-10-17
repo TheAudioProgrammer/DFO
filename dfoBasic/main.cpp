@@ -30,7 +30,7 @@ int main (int argc, char* argv[])
     //generations and iterations
     for (int iterations = 0; iterations < totalIterations; iterations++)
     {
-        fitness.clear();        //each iteration we must clear fitnesses
+        fitness.clear();        //each iteration we must clear fitnesses and reload
         
         //fitness function
         for (int i = 0; i < population.size(); i++)
@@ -41,7 +41,7 @@ int main (int argc, char* argv[])
             {
                 //euclidean distance square result of differences
                 float fitness = pow (targetSolution[j] - population[i][j], 2);
-                temp = fitness + temp;          //temp stores fitneeses until solution size
+                temp = fitness + temp;          //temp stores fitnesses until solution size
                 
                 if (j == targetSolution.size() - 1)
                 {
@@ -62,11 +62,11 @@ int main (int argc, char* argv[])
             int leftFly;
             int rightFly;
             
-            
             if (i == 0)
             {
                 leftFly = (int)fitness.size() - 1;
-            } else
+            }
+            else
             {
                 //compare left and right fly and find more fit
                 leftFly = i - 1;
@@ -76,23 +76,26 @@ int main (int argc, char* argv[])
             if (i == fitness.size() - 1)
             {
                 rightFly = 0;
-            } else
+            }
+            else
             {
                 rightFly = i + 1;
             }
             
-            //find fittest neighbor
-            int bestNeighbor = 0;
+                //find fittest neighbor
+                int bestNeighbor = 0;
             
-            if (fitness[leftFly] < fitness[rightFly])
-            {
-                bestNeighbor = leftFly;
+                if (fitness[leftFly] < fitness[rightFly])
+                {
+                    bestNeighbor = leftFly;
                 
-            } else if (fitness[leftFly] > fitness[rightFly])
-            {
-                bestNeighbor = rightFly;
-            }
+                }
+                else if (fitness[leftFly] > fitness[rightFly])
+                {
+                    bestNeighbor = rightFly;
+                }
             
+            //update function
             for (int j = 0; j < solutionSize; j++)
             {
                 //random dice throw to sometimes redistribute fly
@@ -106,25 +109,25 @@ int main (int argc, char* argv[])
                     
                     population[i][j] = randNum;
                     
-                } else
+                }
+                else
                 {
                     //update position
                     population[i][j] = population[bestNeighbor][j] + randFloat (generator) * (population[fittestInSwarm][j] - population[bestNeighbor][j]);
                 }
             }
         }
-        
     }
     
     
-    //test
-    for (int i = 0; i < 1; i++)
-    {
-        for (int j = 0; j < solutionSize; j++)
-        {
-            std::cout << fittestInSwarm << " is the fittest fly with values " << population[fittestInSwarm][j] << std::endl;
-        }
-    }
+//    //test
+//    for (int i = 0; i < 1; i++)
+//    {
+//        for (int j = 0; j < solutionSize; j++)
+//        {
+//            std::cout << fittestInSwarm << " is the fittest fly with values " << population[fittestInSwarm][j] << std::endl;
+//        }
+//    }
     
     
     
