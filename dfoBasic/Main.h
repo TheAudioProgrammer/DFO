@@ -44,7 +44,4 @@ int totalIterations = 100;
 int fittestInSwarm;
 
 
-
-
-
 #endif /* Main_h */

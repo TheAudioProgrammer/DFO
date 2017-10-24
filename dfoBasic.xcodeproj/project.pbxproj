@@ -248,6 +248,7 @@
 				8EC90ADF1F966C5000AA86BE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

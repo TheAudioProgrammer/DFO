@@ -12,6 +12,18 @@
 int main (int argc, char* argv[])
 {
     
+    
+//    for (int i = 0; i < popSize; i++)
+//    {
+//        theFly.initializeFly(fly, 2, -10, 10);
+//        
+//        population.push_back(fly);
+//    }
+    
+    
+    
+    
+    
     //make flies and give them a random position
     for (int i = 0; i < popSize; i++)
     {
@@ -27,6 +39,14 @@ int main (int argc, char* argv[])
         fly.clear();
     }
     
+    for (int i = 0; i < population.size(); i++)
+    {
+        for (int j = 0; j < 5; j++)
+            std::cout << "population index " << i << " fly values " << j << ": " << population[i][j] << std::endl;
+    }
+    
+    
+
     //generations and iterations
     for (int iterations = 0; iterations < totalIterations; iterations++)
     {
@@ -96,38 +116,46 @@ int main (int argc, char* argv[])
                 }
             
             //update function
-            for (int j = 0; j < solutionSize; j++)
-            {
+            
                 //random dice throw to sometimes redistribute fly
                 float threshold = randFloat (generator);
                 
                 //if dt > r
                 if (threshold < disturbanceThresh)
                 {
+                    for (int j = 0; j < solutionSize; j++)
+                    {
+                    
                     //randomly scatter fly
                     float randNum = lowerBounds+ randFloat (generator) * (upperBounds - lowerBounds);
                     
                     population[i][j] = randNum;
+                        
+                    }
                     
                 }
                 else
                 {
+                    for (int j = 0; j < solutionSize; j++)
+                    {
+                    
                     //update position
                     population[i][j] = population[bestNeighbor][j] + randFloat (generator) * (population[fittestInSwarm][j] - population[bestNeighbor][j]);
+                    }
                 }
-            }
+            
         }
     }
     
     
-//    //test
-//    for (int i = 0; i < 1; i++)
-//    {
-//        for (int j = 0; j < solutionSize; j++)
-//        {
-//            std::cout << fittestInSwarm << " is the fittest fly with values " << population[fittestInSwarm][j] << std::endl;
-//        }
-//    }
+    //test
+    for (int i = 0; i < 1; i++)
+    {
+        for (int j = 0; j < solutionSize; j++)
+        {
+            std::cout << fittestInSwarm << " is the fittest fly with values " << population[fittestInSwarm][j] << std::endl;
+        }
+    }
     
     
     
